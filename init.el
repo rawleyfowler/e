@@ -1,6 +1,6 @@
 ;;; package --- Rawley Fowler's init.el
 ;;; Commentary:
-;;; This is my Void Linux init.el
+;;; Rawley Fowler's Emacs configuration
 ;;; Code:
 
 ;; Font
@@ -28,26 +28,9 @@
 (show-paren-mode 1)
 (recentf-mode 1)
 
-;; My custom funcs
-(defun rf/indent-buffer ()
-  "Apply indenting to whole buffer"
-  (interactive)
-  (save-excursion
-    (indent-region (point-min) (point-max) nil)))
-
-(defun rf/goto-dashboard ()
-  "Go back to dashboard buffer"
-  (interactive)
-  (switch-to-buffer "*dashboard*")
-  (dashboard-mode)
-  (dashboard-refresh-buffer))
-
-(defun rf/kill-inner-word ()
-  "ciw from v*m, in Emacs"
-  (interactive)
-  (forward-char 1)
-  (backward-word)
-  (kill-word 1))
+;; My packages
+(add-to-list 'load-path "~/.emacs.d/rf")
+(require 'funcs)
 
 ;; Packages
 (require 'package)
