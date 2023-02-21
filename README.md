@@ -8,8 +8,7 @@ You may also notice that I don't use `use-package`, that is on purpose. I think 
 drastically over complicates emacs package configuration. Plus its nice to have more control :)
 
 ## Packages (in no particular order)
-- My own custom functions
-- Dashboard
+- (my own custom functions)
 - ctrlf
 - doom-modeline
 - all-the-icons
