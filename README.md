@@ -1,11 +1,11 @@
 # e
-My emacs configuration
+My emacs configuration, mostly for `Raku`, `Perl`, `OCaml`, and `C/C++`. I also do some `Docker` stuff once in awhile.
 
 ## Why?
 I don't like doom emacs, and Vim feels too restrictive.
 
 You may also notice that I don't use `use-package`, that is on purpose. I think it
-drastically over complicates emacs package configuration.
+drastically over complicates emacs package configuration. Plus its nice to have more control :)
 
 ## Packages (in no particular order)
 - My own custom functions
