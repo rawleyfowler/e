@@ -2,10 +2,13 @@
 My emacs configuration, mostly for `Raku`, `Perl`, `OCaml`, and `C/C++`. I also do some `Docker` stuff once in awhile.
 
 ## Why?
-I don't like doom emacs, and Vim feels too restrictive.
+I don't like doom emacs, and modal editing doesn't really appeal to me anymore.
+
+## No use-package???!?!?!
 
 You may also notice that I don't use `use-package`, that is on purpose. I think it
-drastically over complicates emacs package configuration. Plus its nice to have more control :)
+drastically over complicates emacs package configuration. Plus its nice to be able to
+write with just `Emacs Lisp` and not worry about other packages adding macros that are hard to understand.
 
 ## Packages (in no particular order)
 - (my own custom functions)
