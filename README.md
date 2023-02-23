@@ -1,8 +1,8 @@
-# e
-
 ![2023-02-21_16-56](https://user-images.githubusercontent.com/75388349/220477712-54d1bfa2-fa6f-4042-954f-a20d8220db70.png)
 
 My emacs configuration, mostly for `Raku`, `Perl`, `OCaml`, and `C/C++`. I also do some `Docker` stuff once in awhile.
+
+If you're looking for my dotfiles, you can find them [here](https://github.com/rawleyfowler/dotfiles).
 
 ## Why?
 I don't like doom emacs, and modal editing doesn't really appeal to me anymore.
