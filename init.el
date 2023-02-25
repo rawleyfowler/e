@@ -7,11 +7,13 @@
 (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-14"))
 
 ;; Boilerplate/personalizations
-(defconst autosave-dir "~/.auto-save/")
-(unless (file-exists-p autosave-dir)
-  (make-directory autosave-dir t))
-(setq auto-save-file-name-transforms
-      `(("\\(?:[^/]*/\\)*\\(.*\\)" ,(concat autosave-dir "\\1") t)))
+(setq
+ backup-by-copying t ; don't clobber symlinks
+ backup-directory-alist '(("." . "~/.saves")) ; don't litter my fs tree
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
 (setq package-enable-at-startup nil)
 (setq visible-bell nil)
 (setq ring-bell-function 'ignore)
