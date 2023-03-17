@@ -4,7 +4,7 @@
 ;;; Code:
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono Nerd Font-12"))
+(add-to-list 'default-frame-alist '(font . "terminus-11"))
 
 ;; Boilerplate/personalizations
 (setq
@@ -29,6 +29,8 @@
 (menu-bar-mode -1)
 (show-paren-mode 1)
 (recentf-mode 1)
+
+(fset 'perl-mode 'cperl-mode)
 
 ;; My packages
 (add-to-list 'load-path "~/.emacs.d/rf")
@@ -141,6 +143,7 @@
           (lambda ()
             (local-set-key (kbd "C-x E") 'eval-buffer)))
 (add-hook 'perl-mode-hook #'lsp-deferred)
+(add-hook 'cperl-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'company-mode-hook 'company-box-mode)
