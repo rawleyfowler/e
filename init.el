@@ -30,7 +30,15 @@
 (show-paren-mode 1)
 (recentf-mode 1)
 
-(fset 'perl-mode 'cperl-mode)
+(require 'perl-mode)
+(add-hook 'cperl-mode-hook
+          (lambda ()
+            (setq font-lock-defaults
+                  '((perl-font-lock-keywords perl-font-lock-keywords-1 perl-font-lock-keywords-2)
+                    nil nil ((?\_ . "w")) nil
+                    (font-lock-syntactic-face-function . perl-font-lock-syntactic-face-function)))
+            (font-lock-refresh-defaults)))
+(defalias 'perl-mode 'cperl-mode)
 
 ;; My packages
 (add-to-list 'load-path "~/.emacs.d/rf")
