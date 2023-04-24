@@ -7,11 +7,11 @@ If you're looking for my dotfiles, you can find them [here](https://github.com/r
 ## Why?
 I don't like doom emacs, and modal editing doesn't really appeal to me anymore.
 
-## No use-package???!?!?!
+## No use-package?
 
 You may also notice that I don't use `use-package`, that is on purpose. I think it
 drastically over complicates emacs package configuration. Plus its nice to be able to
-write with just `Emacs Lisp` and not worry about other packages adding macros that are hard to understand.
+write ELisp and not worry about decoding `use-package` macros.
 
 ## Packages (in no particular order)
 - (my own custom functions)
