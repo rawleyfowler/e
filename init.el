@@ -4,7 +4,7 @@
 ;;; Code:
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "terminus-11"))
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-14"))
 
 ;; Boilerplate/personalizations
 (setq
