@@ -127,6 +127,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.raku\\?\\(test\\|mod\\)$" . raku-mode))
 
+(require 'ivy)
 (require 'projectile)
 (projectile-mode)
 (setq projectile-completion-system 'ivy)
