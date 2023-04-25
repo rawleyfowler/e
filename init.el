@@ -4,7 +4,7 @@
 ;;; Code:
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-14"))
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-13"))
 
 ;; Boilerplate/personalizations
 (setq
@@ -38,14 +38,14 @@
 ;; Perl stuff
 (require 'perl-mode)
 (add-hook 'cperl-mode-hook
-          (lambda ()
+          #'(lambda ()
             (setq font-lock-defaults
                   '((perl-font-lock-keywords perl-font-lock-keywords-1 perl-font-lock-keywords-2)
                     nil nil ((?\_ . "w")) nil
                     (font-lock-syntactic-face-function . perl-font-lock-syntactic-face-function)))
             (font-lock-refresh-defaults)))
 (defalias 'perl-mode 'cperl-mode)
-(add-hook 'before-save-hook '(lambda ()
+(add-hook 'before-save-hook #'(lambda ()
                               (when (or (eq major-mode 'perl-mode) (eq major-mode 'cperl-mode))
                                   (perltidy-buffer))))
 
@@ -57,7 +57,10 @@
 (package-initialize)
 
 (defconst packages '(ctrlf
+                     flycheck
+                     mmm-mode
                      doom-modeline
+                     web-mode
                      all-the-icons
 				     better-defaults
 				     projectile
@@ -129,12 +132,16 @@
 (setq projectile-completion-system 'ivy)
 
 (require 'lsp-mode)
+(setq lsp-enable-symbol-highlighting t)
 (setq lsp-keymap-prefix "C-c l")
+(setq lsp-clangd-binary-path (executable-find "clangd"))
+(setq lsp-clients-clangd-library-directories "/usr/include/c++/12")
 (setq raku-indent-level 4)
 (setq go-indent-level 4)
 
 (require 'lsp-ui)
 (setq lsp-ui-sideline-enable t)
+(setq lsp-ui-doc-show-with-mouse nil)
 
 (require 'company)
 (setq company-idle-delay 0.0)
@@ -148,7 +155,7 @@
 ;; Hooks
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'emacs-lisp-mode-hook
-          (lambda ()
+          #'(lambda ()
             (local-set-key (kbd "C-x E") 'eval-buffer)))
 (add-hook 'perl-mode-hook #'lsp-deferred)
 (add-hook 'cperl-mode-hook #'lsp-deferred)
@@ -175,7 +182,7 @@
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(spacemacs-theme company-box json-mode cmake-mode cider clojure-mode projectile better-defaults magit raku-mode go-mode smex docker dockerfile-mode yaml-mode gruvbox-theme)))
+   '(web-mode spacemacs-theme company-box json-mode cmake-mode cider clojure-mode projectile better-defaults magit raku-mode go-mode smex docker dockerfile-mode yaml-mode gruvbox-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
