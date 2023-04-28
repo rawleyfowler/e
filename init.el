@@ -162,6 +162,7 @@
 (add-hook 'cperl-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
 (add-hook 'c-mode-hook #'lsp-deferred)
+(add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'company-mode-hook 'company-box-mode)
 
 ;; Keys
