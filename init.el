@@ -4,7 +4,7 @@
 ;;; Code:
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-13"))
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-15"))
 
 ;; Boilerplate/personalizations
 (setq
@@ -22,7 +22,6 @@
 (setq indent-tabs-mode nil)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(set-cursor-color "orange red")
 (global-linum-mode)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -44,21 +43,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-to-list 'load-path "~/.emacs.d/rf")
 (require 'funcs)
 (require 'perltidy) ; Thanks to https://github.com/zakame/perltidy.el
-
-;; Perl stuff
-(require 'perl-mode)
-(add-hook 'cperl-mode-hook
-          #'(lambda ()
-            (setq font-lock-defaults
-                  '((perl-font-lock-keywords perl-font-lock-keywords-1 perl-font-lock-keywords-2)
-                    nil nil ((?\_ . "w")) nil
-                    (font-lock-syntactic-face-function . perl-font-lock-syntactic-face-function)))
-            (font-lock-refresh-defaults)))
-(defalias 'perl-mode 'cperl-mode)
-(add-hook 'before-save-hook #'(lambda ()
-                              (when (or (eq major-mode 'perl-mode) (eq major-mode 'cperl-mode))
-                                  (perltidy-buffer))))
-
 
 ;; Packages
 (require 'package)
@@ -147,6 +131,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq lsp-keymap-prefix "C-c l")
 (setq lsp-clangd-binary-path (executable-find "clangd"))
 (setq lsp-clients-clangd-library-directories "/usr/include/c++/12")
+(setq lsp-enable-file-watchers nil)
 (setq raku-indent-level 4)
 (setq go-indent-level 4)
 
@@ -184,23 +169,47 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (global-set-key (kbd "C-c n") #'rf/indent-buffer)
 (global-set-key (kbd "C-x w") #'rf/kill-inner-word)
 
+;; Perl stuff
+(require 'perl-mode)
+(require 'cperl-mode)
+(add-hook 'cperl-mode-hook
+          #'(lambda ()
+            (setq font-lock-defaults
+                  '((perl-font-lock-keywords perl-font-lock-keywords-1 perl-font-lock-keywords-2)
+                    nil nil ((?\_ . "w")) nil
+                    (font-lock-syntactic-face-function . perl-font-lock-syntactic-face-function)))
+            (font-lock-refresh-defaults)))
+(defalias 'perl-mode 'cperl-mode)
+(add-hook 'before-save-hook #'(lambda ()
+                              (when (or (eq major-mode 'perl-mode) (eq major-mode 'cperl-mode))
+                                (perltidy-buffer))))
+(setq cperl-indent-parens-as-block t)
+
+;; Go stuff
+(add-hook 'before-save-hook 'gofmt-before-save)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruvbox-dark-medium))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes '(tango))
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" default))
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(web-mode spacemacs-theme company-box json-mode cmake-mode cider clojure-mode projectile better-defaults magit raku-mode go-mode smex docker dockerfile-mode yaml-mode gruvbox-theme)))
+   '(web-mode spacemacs-theme company-box json-mode cmake-mode cider clojure-mode projectile better-defaults magit raku-mode go-mode smex docker dockerfile-mode yaml-mode gruvbox-theme))
+ '(pdf-view-midnight-colors '("#fdf4c1" . "#282828")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(set-cursor-color "orange red")
 
 (provide 'init.el)
 ;;; init.el ends here
