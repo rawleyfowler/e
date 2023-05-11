@@ -6,6 +6,9 @@
 ;; Font
 (add-to-list 'default-frame-alist '(font . "Victor Mono Nerd Font Mono-13"))
 
+;; Make startup decently sized
+(add-to-list 'default-frame-alist (list '(width . 72) '(height . 72)))
+
 ;; Boilerplate/personalizations
 (setq
  backup-by-copying t ; don't clobber symlinks
@@ -53,6 +56,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (defconst packages '(ctrlf
                      tree-sitter
                      tree-sitter-langs
+                     flymake
+                     flymake-perlcritic
                      flycheck
                      mmm-mode
                      doom-modeline
@@ -81,6 +86,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 				     ivy
 				     lsp-ivy
 				     lsp-ui
+                     ample-theme
 				     magit))
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -132,11 +138,13 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq projectile-completion-system 'ivy)
 
 (require 'lsp-mode)
+(setq lsp-disabled-clients '(typeprof-ls))
 (setq lsp-enable-symbol-highlighting t)
 (setq lsp-keymap-prefix "C-c l")
 (setq lsp-clangd-binary-path (executable-find "clangd"))
 (setq lsp-clients-clangd-library-directories "/usr/include/c++/12")
 (setq lsp-enable-file-watchers nil)
+(setq lsp-headerline-breadcrumb-enable nil)
 (setq raku-indent-level 4)
 (setq go-indent-level 4)
 
@@ -158,8 +166,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-hook 'emacs-lisp-mode-hook
           #'(lambda ()
             (local-set-key (kbd "C-x E") 'eval-buffer)))
-(add-hook 'perl-mode-hook #'lsp-deferred)
-(add-hook 'cperl-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'go-mode-hook #'lsp-deferred)
@@ -189,6 +195,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                               (when (or (eq major-mode 'perl-mode) (eq major-mode 'cperl-mode))
                                 (perltidy-buffer))))
 (setq cperl-indent-parens-as-block t)
+(setq flymake-perlcritic-severity 1)
+(require 'flymake-perlcritic)
 
 ;; Go stuff
 (add-hook 'before-save-hook 'gofmt-before-save)
@@ -200,9 +208,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes '(modus-vivendi))
+ '(custom-enabled-themes '(ample-flat))
  '(custom-safe-themes
-   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" default))
+   '("c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "fa49766f2acb82e0097e7512ae4a1d6f4af4d6f4655a48170d0a00bcb7183970" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" default))
  '(delete-selection-mode nil)
  '(ispell-dictionary nil)
  '(package-selected-packages
