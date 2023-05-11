@@ -3,6 +3,8 @@
 ;;; Rawley Fowler's Emacs configuration
 ;;; Code:
 
+(server-start)
+
 ;; Font
 (add-to-list 'default-frame-alist '(font . "Victor Mono Nerd Font Mono-13"))
 
@@ -56,8 +58,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (defconst packages '(ctrlf
                      tree-sitter
                      tree-sitter-langs
-                     flymake
-                     flymake-perlcritic
                      flycheck
                      mmm-mode
                      doom-modeline
@@ -95,6 +95,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 	(package-install package)))
 
 ;; Package configuration
+(global-flycheck-mode)
+
 (when (display-graphic-p)
   (require 'all-the-icons))
 
@@ -195,8 +197,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                               (when (or (eq major-mode 'perl-mode) (eq major-mode 'cperl-mode))
                                 (perltidy-buffer))))
 (setq cperl-indent-parens-as-block t)
-(setq flymake-perlcritic-severity 1)
-(require 'flymake-perlcritic)
+(setq flycheck-perlcritic-severity 3)
+(setq flycheck-perl-include-path '("../lib/"))
 
 ;; Go stuff
 (add-hook 'before-save-hook 'gofmt-before-save)
