@@ -163,7 +163,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'docker)
 
-;; Hooks
+;; Hooks + Keys
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'emacs-lisp-mode-hook
           #'(lambda ()
@@ -173,12 +173,17 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'company-mode-hook 'company-box-mode)
 
-;; Keys
+(defun open-in-firefox-hook ()
+  "Helper to add rf/open-in-firefox to a mode."
+  (local-set-key (kbd "C-c f") #'rf/open-in-firefox))
+(add-hook 'html-mode-hook #'open-in-firefox-hook)
+(add-hook 'json-mode-hook #'open-in-firefox-hook)
+
 (global-set-key (kbd "<tab>") #'company-indent-or-complete-common)
 (global-set-key (kbd "C-c C-d") #'rf/goto-dashboard)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "C-c d") 'docker)
-(global-set-key (kbd "C-c p") 'projectile-command-map)
+(global-set-key (kbd "M-x") #'smex)
+(global-set-key (kbd "C-c d") #'docker)
+(global-set-key (kbd "C-c p") #'projectile-command-map)
 (global-set-key (kbd "C-c n") #'rf/indent-buffer)
 (global-set-key (kbd "C-x w") #'rf/kill-inner-word)
 
