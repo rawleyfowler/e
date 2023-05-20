@@ -26,8 +26,7 @@
 (defun rf/open-in-firefox ()
   "Attempts to open the current buffers file in Firefox."
   (interactive)
-  (setq-local browser-file (concat (file-name-sans-extension (buffer-file-name))))
-  (shell-command (concat "firefox " browser-file)))
+  (browse-url (concat "file://" (buffer-file-name))))
 
 (provide 'funcs)
 ;;; funcs.el ends here
