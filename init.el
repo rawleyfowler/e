@@ -59,6 +59,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                      tree-sitter
                      tree-sitter-langs
                      flycheck
+                     flycheck-ocaml
                      mmm-mode
                      doom-modeline
                      web-mode
@@ -87,6 +88,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 				     lsp-ivy
 				     lsp-ui
                      ample-theme
+                     dune
+                     merlin
 				     magit))
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -172,6 +175,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'company-mode-hook 'company-box-mode)
+(add-hook 'tuareg-mode-hook #'merlin-mode)
 
 (defun open-in-firefox-hook ()
   "Helper to add rf/open-in-firefox to a mode."
@@ -204,6 +208,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq cperl-indent-parens-as-block t)
 (setq flycheck-perlcritic-severity 3)
 (setq flycheck-perl-include-path '("../lib/"))
+
+;; OCaml stuff
+(flycheck-ocaml-setup)
+(setq merlin-error-after-save nil)
 
 ;; Go stuff
 (add-hook 'before-save-hook 'gofmt-before-save)
