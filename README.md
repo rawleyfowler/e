@@ -7,8 +7,8 @@ This collection of configurations is simplest, most ergonomic Perl editing exper
 
 You will need the following Perl tools installed via CPAN:
 
-* Perl::Tidy
-* Perl::Critic
+* [Perl::Tidy](https://metacpan.org/pod/Perl::Tidy)
+* [Perl::Critic](https://metacpan.org/pod/Perl::Critic)
 
 You'll also want a Perl installed later than 5.6 (you should have that already).
 
