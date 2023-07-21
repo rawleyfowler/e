@@ -1,47 +1,46 @@
-![2023-02-21_16-56](https://user-images.githubusercontent.com/75388349/220477712-54d1bfa2-fa6f-4042-954f-a20d8220db70.png)
+# e
 
-My emacs configuration, mostly for `Raku`, `Perl`, `OCaml`, and `C/C++`. I also do some `Docker` stuff once in awhile.
+Emacs, the best Emacs Lisp interpreter also turns out to be a great Perl editor.
+This collection of configurations is simplest, most ergonomic Perl editing experience I've ever had.
 
-If you're looking for my dotfiles, you can find them [here](https://github.com/rawleyfowler/dotfiles).
+## Pre-requisites
 
-## Why?
-I don't like doom emacs, and modal editing doesn't really appeal to me anymore.
+You will need the following Perl tools installed via CPAN:
 
-## No use-package?
+* Perl::Tidy
+* Perl::Critic
 
-You may also notice that I don't use `use-package`, that is on purpose. I think it
-drastically over complicates emacs package configuration. Plus its nice to be able to
-write ELisp and not worry about decoding `use-package` macros.
+You'll also want a Perl installed later than 5.6 (you should have that already).
 
-## Packages (in no particular order)
-- (my own custom functions)
-- ctrlf
-- doom-modeline
-- all-the-icons
-- better-defaults
-- projectile
-- json-mode
-- clojure-mode
-- dashboard
-- cider
-- gruvbox-theme
-- yaml-mode
-- dockerfile-mode
-- cmake-mode
-- docker
-- smex
-- go-mode
-- raku-mode
-- tuareg
-- lsp-mode
-- company
-- company-box
-- treemacs
-- lsp-treemacs
-- ivy
-- lsp-ivy
-- lsp-ui
-- magit
+## Installing
 
-## Screenshot (I change my theme a lot)
-![2023-02-21_10-38](https://user-images.githubusercontent.com/75388349/220405707-a3fe5af3-f829-483a-9845-6185dc1a79f1.png)
+```bash
+chmod +x install
+./install
+```
+
+## Packages
+
+In an attempt to make this configuration as distributable, re-usable, and extendable as possible,
+I've cut down the package count to just the following:
+
+* Flycheck
+* Ctrlf
+* Smex
+* Magit
+* A few common modes
+* My favorite theme
+
+## Configurations
+
+* Flycheck uses a fairly strict Perlcritic severity level (3)
+* Cperl mode is used by default
+* Cperl mode has had its hideous SCALAR, ARRAY, and HASH coloring removed
+* Perltidy runs on save
+* Smex and Ido enabled by default
+* Ctrlf enabled by default
+
+## Why GNU Emacs?
+
+I don't like doom emacs, and modal (Vim) editing doesn't really appeal to me anymore. I really like Nano,
+but I can't extend Nano with useful things as easily, so instead, I use GNU Emacs.
