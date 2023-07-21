@@ -41,7 +41,7 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (set-exec-path-from-shell)
 
-(add-to-list 'load-path "~/.emacs.d/rf")
+(add-to-list 'load-path "~/.emacs.d/extras")
 (require 'perltidy) ; Thanks to https://github.com/zakame/perltidy.el
 (require 'perl-mode)
 (require 'cperl-mode)
