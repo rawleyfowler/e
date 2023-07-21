@@ -1,7 +1,7 @@
 ![emacs-heart-perl](https://github.com/rawleyfowler/e/assets/75388349/e97e8497-1e93-4982-83ba-0cf9845e311e)
 
 Emacs, the best Emacs Lisp interpreter also turns out to be a great Perl editor.
-This collection of configurations is simplest, most ergonomic Perl editing experience I've ever had.
+This collection of configurations is the simplest and most ergonomic Perl editing experience I've ever had.
 
 ## Pre-requisites
 
