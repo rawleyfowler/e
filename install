@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+
+use 5.006;
+use strict;
+use warnings;
+
+use File::Copy qw(copy);
+use Carp       qw(croak);
+
+my $base_dir = '~/.emacs.d';
+
+mkdir $base_dir unless -d $base_dir;
+
+copy 'init.el', "$base_dir/init.el" || croak 'Failed to move init.el';
+system("cp -r extras $base_dir/extras") && croak 'Failed to move extras';
+
+print
+  qq{Emacs configured successfully, run it now to install all the stuff!\n\n};
+
+exit 0;
