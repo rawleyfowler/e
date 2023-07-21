@@ -12,12 +12,16 @@ You will need the following Perl tools installed via CPAN:
 
 You'll also want a Perl installed later than 5.6 (you should have that already).
 
+Optionally, you can also install [cozette](https://github.com/slavfox/Cozette) HiDPI to your system if you want to use it as your font.
+
 ## Installing
 
 ```bash
 chmod +x install
 ./install
 ```
+
+Then, open Emacs. If you run into any errors with installing packages, run `M-x package-refresh-contents` and restart Emacs.
 
 ## Packages
 
@@ -42,5 +46,5 @@ I've cut down the package count to just the following:
 
 ## Why GNU Emacs?
 
-I don't like doom emacs, and modal (Vim) editing doesn't really appeal to me anymore. I really like Nano,
+I don't like Doom Emacs, and modal (Vim) editing doesn't really appeal to me anymore. I really like Nano,
 but I can't extend Nano with useful things as easily, so instead, I use GNU Emacs.
